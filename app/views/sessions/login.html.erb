@@ -1,0 +1,16 @@
+<div class="login">
+	<%= form_tag(:action => 'attemp_login') do %>
+	<table>
+		<tr>
+			<td><%= label_tag(:name) %></td>
+			<td><%= text_field_tag(:name) %></td>
+		</tr>
+		<tr>
+			<td><%= label_tag(:password) %></td>
+			<td><%= password_field_tag(:password) %></td>
+			<td>&nbsp;</td>
+			<td><%= submig_tag("Log in") %></td>
+		</tr>
+	</table>
+	<% end %>
+</div>

@@ -1,6 +1,7 @@
 class StatusesController < ApplicationController
   before_action :set_status, only: [:show, :edit, :update, :destroy]
-
+    http_basic_authenticate_with name:'andevl', password: 'foobar', 
+                except:[:index, :show]
   # GET /statuses
   # GET /statuses.json
   def index
@@ -28,8 +29,9 @@ class StatusesController < ApplicationController
 
     respond_to do |format|
       if @status.save
-        format.html { redirect_to @status, notice: 'Status was successfully created.' }
+        format.html { redirect_to @status }
         format.json { render :show, status: :created, location: @status }
+      flash[:notice] = 'Status was successfully created.'
       else
         format.html { render :new }
         format.json { render json: @status.errors, status: :unprocessable_entity }
@@ -69,6 +71,6 @@ class StatusesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def status_params
-      params.require(:status).permit(:name, :content)
+      params.require(:status).permit(:name, :content, :picture)
     end
 end
